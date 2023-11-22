@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function serviceGallery(q, page) {
+export async function serviceGallery(q, page, per_page) {
   const URL = 'https://pixabay.com/api';
   const API_KEY = '40737115-44b84706cba0bed376614eb3e';
   const params = new URLSearchParams({

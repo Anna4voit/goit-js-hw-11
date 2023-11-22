@@ -11,6 +11,7 @@ const refs = {
 
 let page = 1;
 let keySearch = '';
+let per_page = 20;
 refs.btnLoadMore.classList.add('load-more-hidden');
 
 refs.searchForm.addEventListener('submit', handleGallery);
@@ -22,7 +23,7 @@ function handleGallery(event) {
     failure(msg.searchAgain);
     return;
   }
-  serviceGallery(keySearch, (page = 1), (per_page = 20))
+  serviceGallery(keySearch, (page = 1), per_page)
     .then(data => {
       if (data.hits.length === 0) {
         failure(msg.notFound);
@@ -52,7 +53,7 @@ function handleGallery(event) {
 function handleLoadMore() {
   page += 1;
   refs.btnLoadMore.disabled = false;
-  serviceGallery(keySearch, page, (per_page = 20))
+  serviceGallery(keySearch, page, per_page)
     .then(data => {
       refs.gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
       lightbox.refresh();
