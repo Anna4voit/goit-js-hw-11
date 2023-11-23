@@ -12,6 +12,7 @@ const refs = {
 let page = 1;
 let keySearch = '';
 let per_page = 20;
+
 refs.btnLoadMore.classList.add('load-more-hidden');
 
 refs.searchForm.addEventListener('submit', handleGallery);
@@ -32,6 +33,7 @@ function handleGallery(event) {
       } else {
         refs.gallery.innerHTML = createMarkup(data.hits);
         lightbox.refresh();
+        scrollPage();
         const msg = `Hooray! We found ${data.totalHits} images.`;
         success(msg);
       }
@@ -57,6 +59,7 @@ function handleLoadMore() {
     .then(data => {
       refs.gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
       lightbox.refresh();
+      scrollPage();
       const lastPage = Math.ceil(data.totalHits / per_page);
       if (page === lastPage) {
         endPages();
@@ -72,4 +75,15 @@ function endPages() {
   refs.btnLoadMore.classList.add('load-more-hidden');
   refs.btnLoadMore.removeEventListener('click', handleLoadMore);
   failure(msg.theEnd);
+}
+
+function scrollPage() {
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
 }
