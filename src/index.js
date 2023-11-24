@@ -33,15 +33,16 @@ function handleGallery(event) {
       } else {
         refs.gallery.innerHTML = createMarkup(data.hits);
         lightbox.refresh();
-        scrollPage();
         const msg = `Hooray! We found ${data.totalHits} images.`;
         success(msg);
       }
       if (data.totalHits / data.hits.length > 1) {
         refs.btnLoadMore.classList.remove('load-more-hidden');
         refs.btnLoadMore.addEventListener('click', handleLoadMore);
+        scrollPage();
       } else {
         refs.btnLoadMore.classList.add('load-more-hidden');
+        window.scrollTo(0, 0);
       }
     })
     .catch(error => {
