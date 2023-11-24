@@ -62,7 +62,7 @@ img {
   text-transform: uppercase;
   border: none;
   border-radius: 5px;
-  background-color: rgb(12, 12, 140);
+  background-color: #0c6ccd;
   color: #fff;
   cursor: pointer;
   box-shadow: 7px 10px 12px -3px rgba(113, 128, 179, 0.65);
@@ -70,7 +70,7 @@ img {
 }
 .search-form button:hover,
 .search-form button:focus {
-  background-color: rgb(4, 9, 65);
+  background-color: #0a3d70;
 }
 
 input {

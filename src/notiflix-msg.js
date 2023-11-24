@@ -9,7 +9,7 @@ export const msg = {
 };
 
 const options = {
-  timeout: 3000,
+  timeout: 1000,
   position: 'center-center',
   width: '400px',
   fontSize: '24px',

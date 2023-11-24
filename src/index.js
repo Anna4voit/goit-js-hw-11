@@ -39,7 +39,7 @@ function handleGallery(event) {
       if (data.totalHits / data.hits.length > 1) {
         refs.btnLoadMore.classList.remove('load-more-hidden');
         refs.btnLoadMore.addEventListener('click', handleLoadMore);
-        scrollPage();
+        autoScroll();
       } else {
         refs.btnLoadMore.classList.add('load-more-hidden');
         window.scrollTo(0, 0);
@@ -60,7 +60,7 @@ function handleLoadMore() {
     .then(data => {
       refs.gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
       lightbox.refresh();
-      scrollPage();
+      autoScroll();
       const lastPage = Math.ceil(data.totalHits / per_page);
       if (page === lastPage) {
         endPages();
@@ -78,7 +78,7 @@ function endPages() {
   failure(msg.theEnd);
 }
 
-function scrollPage() {
+function autoScroll() {
   const { height: cardHeight } = document
     .querySelector('.gallery')
     .firstElementChild.getBoundingClientRect();
